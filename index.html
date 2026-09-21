@@ -37,7 +37,18 @@
 
   .page.image-page img{width:100%; height:100%; object-fit:contain; display:block; background:#fff;}
 
-  .page.about-page iframe{width:100%; height:100%; border:0; display:block; background:#F4F8FB;}
+  /* ---------- landing ---------- */
+  .landing{
+    background:radial-gradient(circle at 30% 20%, #163a63, #0A1E36 60%);
+    color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; gap:1.6cqw; padding:4cqw;
+  }
+  .landing h1{
+    font-family:'Cambria',Georgia,serif; font-weight:700; font-size:3.6cqw; line-height:1.3;
+    letter-spacing:-.01em; color:#fff; max-width:78%;
+  }
+  .landing-rule{width:3.2cqw; height:2px; background:#E3B23C; margin:.2cqw 0;}
+  .landing-sub{font-size:1.5cqw; color:#9FC3E8; font-style:italic; max-width:66%; line-height:1.5;}
 
   /* ---------- slide1 text overlay ---------- */
   .s1-overlay{
@@ -241,8 +252,12 @@
   <div class="stage">
     <div class="frame" id="frame">
 
-      <div class="page about-page active" data-page="0">
-        <iframe id="aboutFrame" src="about.html" title="About NVAROG"></iframe>
+      <div class="page active" data-page="0">
+        <div class="slide-custom landing">
+          <h1>The future of healthcare has a perfect memory</h1>
+          <div class="landing-rule"></div>
+          <p class="landing-sub">One record that follows a person for life.</p>
+        </div>
       </div>
 
       <div class="page image-page" data-page="1">
@@ -354,16 +369,12 @@
   var prevBtn = document.getElementById('prevBtn');
   var nextBtn = document.getElementById('nextBtn');
   var count = document.getElementById('count');
-  var aboutFrame = document.getElementById('aboutFrame');
 
   function render(){
     pages.forEach(function(p, i){ p.classList.toggle('active', i === current); });
     count.textContent = (current + 1) + ' / ' + total;
     prevBtn.disabled = current === 0;
     nextBtn.disabled = current === total - 1;
-    if (current === 0) {
-      aboutFrame.src = 'about.html';
-    }
   }
 
   function goNext(){ if (current < total - 1) { current++; render(); } }
